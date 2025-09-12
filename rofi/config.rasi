@@ -1,0 +1,112 @@
+configuration {
+    modi: "drun,run";
+    font: "JetBrainsMono Nerd Font 11";  /* Smaller, tighter text */
+    show-icons: true;
+    icon-theme: "Papirus";
+    drun-display-format: "{icon}  {name}";
+    columns: 1;
+    fixed-num-lines: true;
+    display-drun: "";
+}
+
+* {
+    bg:      #282828;
+    bg-alt:  #3c3836;
+    fg:      #ebdbb2;
+    accent:  #b8bb26;
+}
+
+window {
+    transparency: "real";
+    background-color: transparent;
+    border: 0px;
+    border-radius: 10px;   /* slightly smaller rounding */
+    width: 20%;            /* smaller window width */
+    location: center;
+    anchor: center;
+}
+
+mainbox {
+    background-color: transparent;
+    padding: 10;           /* tighter padding */
+}
+
+inputbar {
+    background-color: transparent;
+    text-color: #ffffff;
+    padding: 6;            /* reduced padding */
+    border-radius: 0;
+    spacing: 4;
+    children: [ prompt, entry, separator ];
+}
+
+prompt {
+    text-color: #ffffff;
+    font: "JetBrainsMono Nerd Font 14";  /* smaller magnifying glass */
+}
+
+separator {
+    background-color: transparent;
+    text-color: transparent;
+    border-color: transparent;
+    handle-width: 0px;
+}
+
+entry {
+    placeholder: "Search";
+    text-color: #ffffff;
+    font: "JetBrainsMono Nerd Font 12";  /* smaller entry font */
+}
+
+listview {
+    background-color: transparent;
+    spacing: 6;            /* less spacing between items */
+    border: 0;
+    scrollbar: false;
+    lines: 5;              /* keep 5 items visible */
+    columns: 1;
+}
+
+element {
+    padding: 6;            /* tighter item padding */
+}
+
+element-icon {
+    size: 1.2em;           /* smaller icons */
+}
+
+element normal.normal {
+    background-color: transparent;
+    text-color: @fg;
+}
+
+element alternate.normal {
+    background-color: transparent;
+    text-color: @fg;
+}
+
+element selected.normal {
+    background-color: transparent;
+    text-color: @accent;
+}
+
+element normal.active {
+    background-color: transparent;
+    text-color: @accent;
+}
+
+element alternate.active {
+    background-color: transparent;
+    text-color: @accent;
+}
+
+element normal.urgent {
+    background-color: transparent;
+    text-color: #fb4934;
+}
+
+element alternate.urgent {
+    background-color: transparent;
+    text-color: #fb4934;
+}
+
