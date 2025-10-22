@@ -5,8 +5,8 @@ window:
   decorations: none
   dynamic_padding: false
   padding:
-    x: 10
-    y: 10
+    x: 20
+    y: 20
     blur: true  # Only works with picom blur support
 
 font:
@@ -26,26 +26,28 @@ cursor:
 
 colors:
   primary:
-    background: '0x1f1e1c'   # Very dark brown/gray
-    foreground: '0xe0dacd'   # Light cream
+    background: '0x1f1e1c'   # Dark warm background (keeps focus on content)
+    foreground: '0xebdbb2'   # Classic Gruvbox light cream
 
   normal:
-    black:   '0x1e1d1b'
-    red:     '0xaa5e3f'  # Muted rust (matches earthy reds)
-    green:   '0x7a9f4b'  # Olive green
-    yellow:  '0xc9b36d'  # Dusty gold
-    blue:    '0x6a88b2'  # Muted blue (sky tones)
-    magenta: '0x9c6f89'  # Dusty rose
-    cyan:    '0x84a7a1'  # Soft teal
-    white:   '0xe0dacd'
+    black:   '0x282828'  # True Gruvbox base dark
+    red:     '0xcc241d'  # Muted red (editorial highlight)
+    green:   '0x98971a'  # Olive green
+    yellow:  '0xd79921'  # Mustard yellow
+    blue:    '0x458588'  # Desaturated blue
+    magenta: '0xb16286'  # Dusty magenta
+    cyan:    '0x689d6a'  # Sage cyan
+    white:   '0xebdbb2'  # Gruvbox foreground
 
   bright:
-    black:   '0x3a3936'
-    red:     '0xd77a61'
-    green:   '0xa4bc74'
-    yellow:  '0xe4c985'
-    blue:    '0x93aac8'
-    magenta: '0xc9a1b7'
-    cyan:    '0xa6ccc8'
-    white:   '0xf5f2ed'
+    black:   '0x928374'
+    red:     '0xfb4934'
+    green:   '0xb8bb26'
+    yellow:  '0xfabd2f'
+    blue:    '0x83a598'
+    magenta: '0xd3869b'
+    cyan:    '0x8ec07c'
+    white:   '0xfbf1c7'
 
+env:
+  TERM: xterm-256color
