@@ -7,6 +7,7 @@ vim.opt.scrolloff = 5
 vim.opt.termguicolors = true
 vim.opt.winborder = "rounded"
 vim.opt.swapfile = false
+vim.opt.clipboard = "unnamedplus"
 vim.opt.backup = false
 
 -- tabs & indents
@@ -45,31 +46,40 @@ vim.pack.add({
     { src = 'https://github.com/mason-org/mason.nvim' },
     { src = 'https://github.com/mason-org/mason-lspconfig.nvim' },
     { src = 'https://github.com/nvim-treesitter/nvim-treesitter' },
-    { src = 'https://github.com/vague-theme/vague.nvim' },
+    { src = 'https://github.com/luisiacc/gruvbox-baby' },
+    { src = 'https://github.com/ibhagwan/fzf-lua' },
 })
+
+vim.g.gruvbox_baby_transparent_mode = 1
+vim.cmd("colorscheme gruvbox-baby")
 
 require('mason').setup()
 require('mason-lspconfig').setup()
-
--- transparent background
-vim.api.nvim_create_autocmd("ColorScheme", {
-  callback = function()
-    vim.cmd([[
-      hi Normal guibg=NONE ctermbg=NONE
-      hi NormalNC guibg=NONE ctermbg=NONE
-      hi NormalFloat guibg=NONE ctermbg=NONE
-      hi FloatBorder guibg=NONE ctermbg=NONE
-      hi SignColumn guibg=NONE ctermbg=NONE
-      hi LineNr guibg=NONE ctermbg=NONE
-      hi CursorLineNr guibg=NONE ctermbg=NONE
-      hi FoldColumn guibg=NONE ctermbg=NONE
-      hi EndOfBuffer guibg=NONE ctermbg=NONE
-      hi DiagnosticFloatingError guibg=NONE ctermbg=NONE
-      hi DiagnosticFloatingWarn guibg=NONE ctermbg=NONE
-      hi DiagnosticFloatingInfo guibg=NONE ctermbg=NONE
-      hi DiagnosticFloatingHint guibg=NONE ctermbg=NONE
-    ]])
-  end,
+require('nvim-treesitter.configs').setup({
+  ensure_installed = { "lua", "python", "cpp", "javascript", "html", "css", "php", "sql" },
+  highlight = { enable = true },
+  indent = { enable = true },
 })
 
-vim.cmd("colorscheme vague")
+-- FZF Lua setup
+local fzf = require('fzf-lua')
+
+require("fzf-lua").setup({
+  winopts = {
+    fullscreen = true,
+    border = "none",
+    preview = {
+      layout = "vertical",
+      vertical = "up:50%",
+    },
+  },
+  fzf_opts = {
+    ["--info"] = "inline",
+    ["--layout"] = "reverse",
+  },
+})
+
+vim.keymap.set('n', '<leader>ff', fzf.files, { desc = 'Find files' })
+vim.keymap.set('n', '<leader>fg', fzf.live_grep, { desc = 'Live grep' })
+vim.keymap.set('n', '<leader>fb', fzf.buffers, { desc = 'Switch buffers' })
+vim.keymap.set('n', '<leader>fh', fzf.help_tags, { desc = 'Find help' })
