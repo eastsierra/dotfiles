@@ -49,20 +49,19 @@ vim.pack.add({
 	{ src = "https://github.com/luisiacc/gruvbox-baby" },
 	{ src = "https://github.com/mason-org/mason.nvim" },
 	{ src = "https://github.com/mason-org/mason-lspconfig.nvim" },
-	{ src = "https://github.com/kylechui/nvim-surround" },
 	{ src = "https://github.com/nvim-treesitter/nvim-treesitter" },
 	{ src = "https://github.com/ibhagwan/fzf-lua" },
 	{ src = "https://github.com/nvim-tree/nvim-web-devicons" },
 	{ src = "https://github.com/stevearc/conform.nvim" },
+	{ src = "https://github.com/stevearc/oil.nvim" },
 })
 
 vim.g.gruvbox_baby_transparent_mode = 1
 vim.cmd("colorscheme gruvbox-baby")
+vim.cmd(":hi statusline guibg=NONE")
 
 require("mason").setup()
 require("mason-lspconfig").setup()
-
-require("nvim-surround").setup()
 
 require("nvim-treesitter.configs").setup({
 	ensure_installed = {
@@ -118,7 +117,7 @@ require("fzf-lua").setup({
 })
 
 vim.keymap.set("n", "<leader>ff", fzf.files, { desc = "Find files" })
-vim.keymap.set("n", "<leader>fg", fzf.live_grep, { desc = "Live grep" })
+vim.keymap.set("n", "<leader>fl", fzf.live_grep, { desc = "Live grep" })
 vim.keymap.set("n", "<leader>fh", fzf.help_tags, { desc = "Find help" })
 
 -- formatter
@@ -143,3 +142,12 @@ require("conform").setup({
 vim.keymap.set("n", "<leader>fo", function()
 	require("conform").format({ lsp_fallback = true })
 end, { desc = "Format code" })
+
+require("oil").setup({
+	default_file_explorer = true,
+	view_options = {
+		show_hidden = true,
+	},
+})
+
+vim.keymap.set("n", "<leader>o", "<cmd>Oil<CR>", { desc = "Open file explorer" })
