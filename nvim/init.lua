@@ -3,14 +3,14 @@ vim.g.mapleader = " "
 vim.opt.number = true
 vim.opt.relativenumber = true
 vim.opt.signcolumn = "yes"
-vim.opt.scrolloff = 5
+vim.opt.scrolloff = 6
 vim.opt.termguicolors = true
 vim.opt.winborder = "rounded"
 vim.opt.clipboard = "unnamedplus"
+
 vim.opt.swapfile = false
 vim.opt.backup = false
 
--- tabs & indents
 vim.opt.expandtab = true
 vim.opt.smartindent = true
 vim.opt.tabstop = 4
@@ -18,30 +18,24 @@ vim.opt.shiftwidth = 4
 vim.opt.linebreak = true
 vim.opt.breakindent = true
 
--- gj/gk aware
-vim.keymap.set("n", "k", "v:count == 0 ? 'gk' : 'k'", { expr = true, silent = true })
-
--- highlights everything
-vim.keymap.set("n", "<C-a>", "gg<S-v>G")
-
 -- searching
 vim.opt.ignorecase = true
 vim.opt.smartcase = true
 vim.opt.incsearch = true
 
--- clears pesky search highlights
+-- misc keymaps
+vim.keymap.set("n", "k", "v:count == 0 ? 'gk' : 'k'", { expr = true, silent = true })
+vim.keymap.set("n", "<C-a>", "gg<S-v>G")
+vim.keymap.set({ "n", "v", "x" }, "<leader>n", ":norm ")
 vim.keymap.set("n", "<Esc>", ":nohlsearch<CR>", { silent = true })
-
--- drag line with alt
 vim.keymap.set("n", "<A-j>", ":m .+1<CR>==", { noremap = true, silent = true })
 vim.keymap.set("n", "<A-k>", ":m .-2<CR>==", { noremap = true, silent = true })
-
--- drag highlighted lines with alt
 vim.keymap.set("x", "<A-j>", ":m '>+1<CR>gv=gv", { noremap = true, silent = true })
 vim.keymap.set("x", "<A-k>", ":m '<-2<CR>gv=gv", { noremap = true, silent = true })
-
--- norm
-vim.keymap.set({ "n", "v", "x" }, "<leader>n", ":norm ")
+vim.keymap.set("n", "J", "mzJ`z")
+vim.keymap.set("n", "<leader>y", '"+y')
+vim.keymap.set("v", "<leader>y", '"+y')
+vim.keymap.set("n", "<leader>Y", '"+Y')
 
 -- plugins
 vim.pack.add({
@@ -79,16 +73,8 @@ require("nvim-treesitter.configs").setup({
 		"markdown",
 		"markdown_inline",
 	},
-
-	highlight = {
-		enable = true,
-		additional_vim_regex_highlighting = false,
-	},
-
-	indent = {
-		enable = true,
-	},
-
+	highlight = { enable = true },
+	indent = { enable = true },
 	incremental_selection = {
 		enable = true,
 		keymaps = {
