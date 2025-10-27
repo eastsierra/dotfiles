@@ -5,21 +5,21 @@ vim.opt.relativenumber = true
 vim.opt.signcolumn = "yes"
 vim.opt.scrolloff = 6
 vim.opt.termguicolors = true
-vim.opt.winborder = "rounded"
+-- vim.opt.winborder = "rounded"
 vim.opt.clipboard = "unnamedplus"
 
 vim.opt.swapfile = false
 vim.opt.backup = false
 
+vim.opt.tabstop = 2
+vim.opt.softtabstop = 2
+vim.opt.shiftwidth = 2
 vim.opt.expandtab = true
 vim.opt.smartindent = true
-vim.opt.tabstop = 4
-vim.opt.shiftwidth = 4
 vim.opt.linebreak = true
 vim.opt.breakindent = true
 
--- searching
-vim.opt.ignorecase = true
+-- searching vim.opt.ignorecase = true
 vim.opt.smartcase = true
 vim.opt.incsearch = true
 
@@ -33,8 +33,7 @@ vim.keymap.set("n", "<A-k>", ":m .-2<CR>==", { noremap = true, silent = true })
 vim.keymap.set("x", "<A-j>", ":m '>+1<CR>gv=gv", { noremap = true, silent = true })
 vim.keymap.set("x", "<A-k>", ":m '<-2<CR>gv=gv", { noremap = true, silent = true })
 vim.keymap.set("n", "J", "mzJ`z")
-vim.keymap.set("n", "<leader>y", '"+y')
-vim.keymap.set("v", "<leader>y", '"+y')
+vim.keymap.set({ "n", "v" }, "<leader>y", '"+y')
 vim.keymap.set("n", "<leader>Y", '"+Y')
 
 -- plugins
@@ -48,6 +47,9 @@ vim.pack.add({
 	{ src = "https://github.com/nvim-tree/nvim-web-devicons" },
 	{ src = "https://github.com/stevearc/conform.nvim" },
 	{ src = "https://github.com/stevearc/oil.nvim" },
+	{ src = "https://github.com/saghen/blink.cmp" },
+	{ src = "https://github.com/rafamadriz/friendly-snippets" },
+	{ src = "https://github.com/windwp/nvim-autopairs" },
 })
 
 vim.g.gruvbox_baby_transparent_mode = 1
@@ -56,6 +58,11 @@ vim.cmd(":hi statusline guibg=NONE")
 
 require("mason").setup()
 require("mason-lspconfig").setup()
+
+vim.diagnostic.config({
+	virtual_text = true,
+	underline = true,
+})
 
 require("nvim-treesitter.configs").setup({
 	ensure_installed = {
@@ -74,15 +81,6 @@ require("nvim-treesitter.configs").setup({
 		"markdown_inline",
 	},
 	highlight = { enable = true },
-	indent = { enable = true },
-	incremental_selection = {
-		enable = true,
-		keymaps = {
-			init_selection = "<CR>",
-			node_incremental = "<CR>",
-			node_decremental = "<BS>",
-		},
-	},
 })
 
 local fzf = require("fzf-lua")
@@ -137,3 +135,18 @@ require("oil").setup({
 })
 
 vim.keymap.set("n", "<leader>o", "<cmd>Oil<CR>", { desc = "Open file explorer" })
+
+require("blink.cmp").setup({
+	keymap = {
+		preset = "default",
+	},
+	completion = {
+		documentation = { auto_show = false },
+	},
+	appearance = {
+		use_nvim_cmp_as_default = true,
+		nerd_font_variant = "mono",
+	},
+})
+
+require("nvim-autopairs").setup()
