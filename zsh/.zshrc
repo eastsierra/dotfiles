@@ -1,5 +1,6 @@
 autoload -U colors && colors
-PS1='%F{green}%~%f %(?.%F{223}$%f.%F{101}$%f) '
+PS1='%F{245}%~%f %(?.%F{15}›%f.%F{204}›%f) '
+
 stty stop undef
 setopt correct
 
@@ -39,3 +40,4 @@ zle -N zle-line-init
 echo -ne '\e[5 q'
 
 source /usr/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+
